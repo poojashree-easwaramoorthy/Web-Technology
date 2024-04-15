@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bill.css"/>
+    <title>GST Calculator</title>
+</head>
+<body style="background-color:rgb(166, 157, 192)">
+    <h1><center>Vivo Mobiles</center></h1>
+    <form id="gstForm" onsubmit="return calculateGST()">
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName" required><br><br>
+       
+        <label for="customerAddress">Customer Address:</label>
+        <input type="text" id="customerAddress" required><br><br>
+       
+        <label for="product">Product:</label>
+        <select id="product" onchange="populateAmount()" required>
+            <option value="">Select Product</option>
+            <option value="V30 Pro">V30 Pro</option>
+            <option value="X100">X100</option>
+            <option value="Y200e 5G">Y200e 5G</option>
+            <option value="Y28 5G">Y28 5G</option>
+            <option value="V29 Pro">V29 Pro</option>
+            <option value="Y17s">Y17s</option>
+        </select><br><br>
+       
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" onchange="adjustAmount()" min="1" max="5" required><br><br>
+       
+        <label for="paymentMode">Payment Mode:</label>
+        <select id="paymentMode" required>
+            <option value="">Select Payment Mode</option>
+            <option value="cash">Cash</option>
+            <option value="UPI">UPI</option>
+        </select><br><br>
+       
+        <label for="rate">GST Rate:</label>
+        <select id="rate" required>
+            <option value="">Select GST Rate</option>
+            <option value="5">5%</option>
+            <option value="12">12%</option>
+            <option value="18">18%</option>
+            <option value="28">28%</option>
+        </select><br><br>
+       
+        <label for="amount">Enter Amount:</label>
+        <input type="number" id="amount" min="0" required><br><br>
+       
+        <button type="submit">Calculate GST</button>
+    </form>
+   
+    <div id="result" style="display: none;">
+        <h2>Bill Details</h2>
+        <p>Customer Name: <span id="resultCustomerName"></span></p>
+        <p>Customer Address: <span id="resultCustomerAddress"></span></p>
+        <p>Product: <span id="resultProduct"></span></p>
+        <p>Quantity: <span id="resultQuantity"></span></p>
+        <p>Payment Mode: <span id="resultPaymentMode"></span></p>
+        <p>GST Amount: <span id="gstAmount"></span></p>
+        <p>Total Amount: <span id="totalAmount"></span></p>
+    </div>
+
+    <script>
+        function calculateGST() {
+            var customerName = document.getElementById("customerName").value;
+            var customerAddress = document.getElementById("customerAddress").value;
+            var product = document.getElementById("product").value;
+            var quantity = parseInt(document.getElementById("quantity").value);
+            var paymentMode = document.getElementById("paymentMode").value;
+            var rate = parseFloat(document.getElementById("rate").value);
+            var amount = parseFloat(document.getElementById("amount").value);
+           
+            var gstAmount = (amount * rate) / 100;
+            var totalAmount = amount + gstAmount;
+           
+            document.getElementById("resultCustomerName").innerText = customerName;
+            document.getElementById("resultCustomerAddress").innerText = customerAddress;
+            document.getElementById("resultProduct").innerText = product;
+            document.getElementById("resultQuantity").innerText = quantity;
+            document.getElementById("resultPaymentMode").innerText = paymentMode;
+            document.getElementById("gstAmount").innerText = gstAmount.toFixed(2);
+            document.getElementById("totalAmount").innerText = totalAmount.toFixed(2);
+            document.getElementById("result").style.display = "block";
+            
+            return false; // Prevent form submission
+        }
+
+        function populateAmount() {
+            var product = document.getElementById("product").value;
+            var amountInput = document.getElementById("amount");
+
+            switch (product) {
+                case "V30 Pro":
+                    amountInput.value = "30000";
+                    break;
+                case "X100":
+                    amountInput.value = "35000";
+                    break;
+                case "Y200e 5G":
+                    amountInput.value = "40000";
+                    break;
+                case "Y28 5G":
+                    amountInput.value = "37000";
+                    break;
+                case "V29 Pro":
+                    amountInput.value = "45000";
+                    break;
+                case "Y17s":
+                    amountInput.value = "35000";
+                    break;
+                default:
+                    amountInput.value = "";
+            }
+        }
+
+        function adjustAmount() {
+            var quantity = parseInt(document.getElementById("quantity").value);
+            var amountInput = document.getElementById("amount");
+
+            if (!isNaN(quantity) && quantity > 0) {
+                var amount = parseFloat(amountInput.value);
+                amountInput.value = (amount * quantity).toFixed(2);
+            }
+        }
+    </script>
+</body>
+</html>
