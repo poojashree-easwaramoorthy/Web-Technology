@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center; 
+        }
+        .form-container {
+            border: 2px solid #4CAF50; 
+            border-radius: 8px; 
+            padding: 20px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label {
+            display: inline-block;
+            width: 120px; 
+            margin-bottom: 10px;
+            text-align: right; 
+        }
+        input[type="text"],
+        input[type="radio"],
+        select {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add shadow box effect */
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50; 
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form action="http://localhost:3000/submit" method="post">
+                <h1> Student Form</h1>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="gender">Gender:</label>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Female</label><br>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea><br>
+
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" id="mobile" name="mobile" required><br>
+
+                <label for="state">State:</label>
+                <select id="state" name="state" required>
+                    <option value="Select State"> Select State</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                </select><br>
+
+                <input type="checkbox" id="confirmation" name="confirmation" required>
+                <label for="confirmation">I confirm that the above details are correct.</label><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
