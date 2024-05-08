@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Validation Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid #380731;
+    
+  }
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #380731;
+    border: 1px solid #380731;
+  }
+  th {
+    background-color:white;
+    color: #9f118c;
+  }
+  .error {
+    color: red;
+  }
+  .success {
+    color: green;
+  }
+
+</style>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <form id="registrationForm" onsubmit="return validateForm()">
+    <table>
+      <tr>
+        <th><label for="name">Name:</label></th>
+        <td><input type="text" id="name" name="name" placeholder="Enter your name" required>
+        <span id="nameError" class="error"></span>
+      </td>
+      </tr>
+      <tr>
+        <th><label>Gender:</label></th>
+        <td>
+          <label><input type="radio" name="gender" value="male" required> Male</label>
+          <label><input type="radio" name="gender" value="female" required> Female</label>
+        </td>
+      </tr>
+      <tr>    
+        <th><label>Languages Known:</label></th>
+        <td>
+          <label><input type="checkbox" name="languages" value="english"> English</label>
+          <label><input type="checkbox" name="languages" value="Tamil"> Tamil</label>
+          <label><input type="checkbox" name="languages" value="Hindi"> Hindi</label>
+        </td>
+      </tr>
+      <tr>
+        <th><label for="district">District:</label></th>
+        <td>
+          <select id="district" name="district" required>
+            <option value="">Select District</option>
+            <option value="Erode">Erode</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Tirupur">Tirupur</option>
+            <option value="Karur">Karur</option>
+            <option value="Salem">Salem</option>
+            <option value="Nammakal">Nammakal</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th><label for="address">Address:</label></th>
+        <td><textarea id="address" name="address" placeholder="Enter your address"></textarea></td>
+      </tr>
+      <tr>
+        <th><label for="email">Email:</label></th>
+        <td><input type="email" id="email" name="email" placeholder="Enter your email" required></td>
+      </tr>
+      <tr>
+        <th><label for="phone">Phone Number:</label></th>
+        <td><input type="telz" id="phone" name="phone" placeholder="Enter your phone number" required></td>
+      </tr>
+      <tr>
+        <th><label for="username">Username:</label></th>
+        <td><input type="text" id="username" name="username" placeholder="Enter your username" required>
+          <span id="usernameError" class="error"></span>
+        </td>
+      </tr>
+      <tr>
+        <th><label for="password">Password:</label></th>
+        <td><input type="password" id="password" name="password" placeholder="Enter your password" required>
+          <span id="passwordError" class="error"></span>
+        </td>
+      </tr>
+      <tr>
+        <th><label for="confirmPassword">Confirm Password:</label></th>
+        <td><input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required></td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="submit" value="Register">
+          <div id="successMessage" class="success"></div>
+          <div id="errorMessage" class="error"></div>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <script>
+    function validateForm() {
+        var name = document.getElementById('name').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        var nameError = document.getElementById('nameError');
+        var usernameError = document.getElementById('usernameError');
+        var passwordError = document.getElementById('passwordError');
+        var successMessage = document.getElementById('successMessage');
+        var errorMessage = document.getElementById('errorMessage');
+
+        if (!/^[A-Za-z][A-Za-z\s]*$/.test(name)) {
+            nameError.textContent = '<----- Start with alphabet and must have space';
+            return false;
+        } else {
+            nameError.textContent = '';
+        }
+
+        if (!/^[A-Za-z][A-Za-z0-9_]*[_][A-Za-z0-9_]*$/.test(username)) {
+            usernameError.textContent = '<----- Start with alphabet, contain only alphanumeric characters and atleast one underscore';
+            return false;
+        } else {
+            usernameError.textContent = '';
+        }
+
+        if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[#@*])[A-Za-z\d#@*]{8,}$/.test(password)) {
+            passwordError.textContent = '<----- contain at least one alphabet, one digit, and one special character (#, @, *)';
+            return false;
+        } else {
+            passwordError.textContent = '';
+        }
+        if (name && username && password && confirmPassword && (password === confirmPassword)) {
+        
+        errorMessage.textContent = '';
+
+        
+        successMessage.textContent = 'Successfully Registered!';
+
+        
+        setTimeout(function() {
+            document.getElementById('registrationForm').submit();
+        }, 3000); 
+
+        return false; 
+    } else {
+        errorMessage.textContent = 'Please fill in all fields correctly';
+        return false; 
+    }
+}
+
+  </script>
+  
+</body>
+</html>
