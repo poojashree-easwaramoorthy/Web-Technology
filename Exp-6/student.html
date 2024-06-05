@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            background-color: #fff; /* Changed background color to white */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        label {
+            display: inline-block;
+            width: 120px; /* Adjust the width as needed */
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        select,
+        textarea {
+            width: calc(100% - 142px); /* Adjust the width to accommodate the label */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+            display: inline-block; /* Display radio buttons inline */
+        }
+        input[type="submit"],
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #0056b3;
+            color: #fff;
+        }
+        button[type="submit"] {
+            background-color: #007bff; /* Blue for Insert */
+        }
+        button[type="submit"]:nth-of-type(3) {
+            background-color: #007bff; /* Purple for Update */
+        }
+        button[type="submit"]:nth-of-type(4) {
+            background-color: lightgreen; /* Light green for View */
+        }
+        button[type="submit"]:nth-of-type(2) {
+            background-color: rgb(228, 89, 89); /* Red for Delete */
+        }
+    </style>
+</head>
+<body>
+    <h1><center>STUDENT DETAILS</center></h1>
+    <form id="form" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="" placeholder="Enter your name" required><br>
+       
+        <label for="regno">Register Number:</label>
+        <input type="text" id="regno" name="regno" value="" placeholder="Enter register number" required><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" value="" placeholder="Select date of birth" required><br>
+
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" value="" placeholder="Enter your age" required><br>
+
+        <label for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male" class="radio-label">Male</label>
+        <input type="radio" id="female" name="gender" value="Female" required>
+        <label for="female" class="radio-label">Female</label><br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" placeholder="Enter your address" required></textarea><br>
+       
+        <label for="mobile">Mobile No:</label>
+        <input type="text" id="mobile" name="mobile" value="" placeholder="Enter your mobile number" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="" placeholder="Enter your email" required><br>
+       
+        <button type="submit" onclick="set('/insert', event)">Insert</button>
+        <button type="submit" onclick="set('/delete', event)">Delete</button>
+        <button type="submit" onclick="set('/update', event)">Update</button>
+        <button type="submit" onclick="set('/display', event)">View</button>
+    </form>
+
+    <script>
+        function set(path, event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            document.getElementById('form').action = 'http://localhost:7050' + path;
+            document.getElementById('form').submit(); // Submit the form after setting the action
+        }
+    </script>
+</body>
+</html>
