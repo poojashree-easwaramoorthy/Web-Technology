@@ -1,0 +1,38 @@
+[
+    {
+      "name": "Pooja Shree A E",
+      "registerNumber": "22ITR076",
+      "dept": "IT",
+      "cgpa":"7.83"
+    },
+    {
+        "name": "Santhapriyan S",
+        "registerNumber": "22ITR091",
+        "dept": "IT",
+        "cgpa":"7.30"
+    },
+    {
+        "name": "Srinithi M",
+        "registerNumber": "22ITR098",
+        "dept": "IT",
+        "cgpa":"8.75"
+    },
+    {
+        "name": "Rasika J",
+      "registerNumber": "22ITR083",
+      "dept": "IT",
+      "cgpa":"6.67"
+    },
+    {
+        "name": "Niranjana N",
+      "registerNumber": "22ITR072",
+      "dept": "IT",
+      "cgpa":"7.91"
+    },
+    {
+        "name": "Santhiya E",
+      "registerNumber": "22AMR086",
+      "dept": "AIML",
+      "cgpa":"8.02"
+    }
+  ]
