@@ -1,0 +1,95 @@
+<div class="centered-form-container">
+  <form [formGroup]="frm" (ngSubmit)="onSubmit()">
+    <h2>Student Details Form</h2>
+    <p>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" formControlName="name"/>
+      <span *ngIf="frm.controls['name'].invalid" style="color: red">
+       Please enter the valid name.
+      </span>
+    </p>
+    <p>
+      <label for="gender">Gender</label>
+      <input type="radio" value="Male" id="gender-male" formControlName="gender" />Male
+      <input type="radio" value="Female" id="gender-female" formControlName="gender" />Female
+    </p>
+    <p>
+      <label for="rollno">RollNo</label>
+      <input type="text" id="rollno" name="rollno" formControlName="rollno"/>
+      <span *ngIf="frm.controls['rollno'].invalid" style="color: red">
+        Please enter the valid RollNo.
+       </span>
+    </p>
+    <p>
+      <label for="dept">Department</label>
+      <select id="dept" name="dept" formControlName="dept">
+        <option value="">Select Department</option>
+        <option value="IT">IT</option>
+        <option value="CSE">CSE</option>
+        <option value="ECE">ECE</option>
+      </select>
+    </p>
+    <p>
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" formControlName="email" />
+      <span *ngIf="frm.controls['email'].hasError('email')" style="color: red">
+        Please enter valid email.
+      </span>
+    </p>
+    <p>
+      <label for="phone">Phone No</label>
+      <input type="text" id="phone" name="phone" formControlName="phone" />
+      <span *ngIf="frm.controls['phone'].hasError('phone')" style="color: red">
+        Please enter valid Phone Number.
+      </span>
+    </p>
+
+    <p>
+      <label for="isverified">The above details are correct and verified.</label>
+      <input
+        type="checkbox"
+        id="isverified"
+        name="isverified"
+        formControlName="isverified"
+      />
+    </p>
+    <button type="submit" [disabled]="!frm.valid">Submit</button>
+    
+  </form>
+ <div *ngIf="submitted" class="submitted-data">
+    <h2>Form Data</h2>
+    <table>
+      
+      <tr>
+        <th> Name</th>
+        <td>{{ formData.name }}</td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td>{{ formData.gender }}</td>
+      </tr>
+      <tr>
+        <th>Rollno</th>
+        <td>{{ formData.rollno}}</td>
+      </tr>
+      <tr>
+        <th>Department</th>
+        <td>{{ formData.dept }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ formData.email}}</td>
+      </tr>
+      <tr>
+        <th>Phone No</th>
+        <td>{{ formData.phone}}</td>
+      </tr>
+      <tr>
+        <th>Is Verified</th>
+        <td>{{ formData.isverified ? "Yes" : "No" }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
