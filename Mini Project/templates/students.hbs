@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Cell - For Students</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(246, 192, 226);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">Placement Cell</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/students">For Students</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/recruiters">For Recruiters</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+                    <li class="nav-item">
+                        <form action="/signout" method="post">
+                            <button type="submit" class="btn btn-outline-light">SignOut</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">For Students</h2>
+                <p class="card-text">Please fill out the form below to register for placement assistance and stay updated with our latest offerings.</p>
+                <form action="/students" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="fullName">Full Name:</label>
+                        <input type="text" class="form-control" id="fullName" name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="degree">Degree Program:</label>
+                        <input type="text" class="form-control" id="degree" name="degree" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year of Graduation:</label>
+                        <input type="text" class="form-control" id="year" name="year" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resume">Upload Resume:</label>
+                        <input type="file" class="form-control-file" id="resume" name="resume" required>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h2>Registered Students</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Degree</th>
+                        <th>Year</th>
+                        <th>Resume</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each students}}
+                    <tr>
+                        <td>{{this.fullName}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.phone}}</td>
+                        <td>{{this.degree}}</td>
+                        <td>{{this.year}}</td>
+                        <td><a href="{{this.resume}}" target="_blank">Download</a></td>
+                        <td>
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateModal" 
+                                    data-id="{{this._id}}" 
+                                    data-name="{{this.fullName}}" 
+                                    data-email="{{this.email}}" 
+                                    data-phone="{{this.phone}}" 
+                                    data-degree="{{this.degree}}" 
+                                    data-year="{{this.year}}">
+                                Update
+                            </button>
+                            <form action="/students/delete/{{this._id}}" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateModalLabel">Update Student</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="studentId" name="id">
+                        <div class="form-group">
+                            <label for="updateFullName">Full Name</label>
+                            <input type="text" class="form-control" id="updateFullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateEmail">Email</label>
+                            <input type="email" class="form-control" id="updateEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updatePhone">Phone Number</label>
+                            <input type="tel" class="form-control" id="updatePhone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateDegree">Degree Program</label>
+                            <input type="text" class="form-control" id="updateDegree" name="degree" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateYear">Year of Graduation</label>
+                            <input type="text" class="form-control" id="updateYear" name="year" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateResume">Upload Resume</label>
+                            <input type="file" class="form-control-file" id="updateResume" name="resume">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Placement Cell. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $('#updateModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var name = button.data('name');
+            var email = button.data('email');
+            var phone = button.data('phone');
+            var degree = button.data('degree');
+            var year = button.data('year');
+
+            var modal = $(this);
+            modal.find('#studentId').val(id);
+            modal.find('#updateFullName').val(name);
+            modal.find('#updateEmail').val(email);
+            modal.find('#updatePhone').val(phone);
+            modal.find('#updateDegree').val(degree);
+            modal.find('#updateYear').val(year);
+
+            var form = modal.find('form');
+            form.attr('action', '/students/update/' + id);
+
+            console.log("Form action set to:", form.attr('action'));
+        });
+    </script>
+</body>
+</html>

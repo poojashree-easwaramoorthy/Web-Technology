@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Cell - About Us</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+        h2{
+            color: #0c0c0c;
+        }
+        p{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">Placement Cell</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+            <li class="nav-item active"><a class="nav-link" href="/students">For Students</a></li>
+            <li class="nav-item"><a class="nav-link" href="/recruiters">For Recruiters</a></li>
+            <li class="nav-item"><a class="nav-link" href="/contact">Contact Us</a></li>
+            <li class="nav-item">
+                <form action="/signout" method="post">
+                    <button type="submit" class="btn btn-outline-light">SignOut</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    </header>
+
+    <main class="container mt-4">
+        <h2>About Us</h2>
+        <img id="bg" src="/images/a.jpg" alt="Background Image">
+        <p>Our mission is to provide comprehensive support to students in their career development and to foster strong relationships with industry leaders. We aim to prepare students to meet professional challenges and achieve their career aspirations.</p>
+        <h3>Our Mission</h3>
+        <p>Facilitate the best placement opportunities for students.</p>
+        <p>Connect recruiters with top candidates.</p>
+        <p>Preparing for placement cell interviews can help build confidence and reduce nervousness.
+        <p>It helps in understanding the company's job requirements and expectations.</p>
+        <p>It helps in showcasing your skills, experiences, and achievements effectively.</p>
+        <p>It raises the likelihood of employment.</p>
+        <p>It prepares you for future job interviews and improves your overall interview skills.</p>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Placement Cell. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
